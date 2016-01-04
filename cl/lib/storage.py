@@ -1,4 +1,5 @@
 import os
+from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import itertools
 
@@ -35,3 +36,11 @@ class IncrementingFileSystemStorage(FileSystemStorage):
                                 "%s_%s%s" % (file_root, next(count), file_ext))
 
         return name
+
+    def size(self, name):
+        """
+        Override the size method of FileSystemStorage to work around bug in
+        Django 1.8 where MEDIA_ROOT is not used dynamically when building the
+        underlying absolute path.
+        """
+        return os.path.getsize(os.path.join(settings.MEDIA_ROOT, name))

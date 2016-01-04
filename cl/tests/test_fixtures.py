@@ -36,7 +36,5 @@ class AudioFixtureTest(TestCase):
         print 'MEDIA_ROOT: %s' % (settings.MEDIA_ROOT,)
         print 'path: %s' % (getattr(local_path_mp3, 'path'))
 
-        try:
-            print 'size: %s' % (getattr(local_path_mp3, 'size'))
-        except OSError:
-            self.fail('size attribute cannot be called on local_path_mp3')
+        print 'size: %s' % (getattr(local_path_mp3, 'size'))
+        
