@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     'cl.favorites',
     'cl.people_db',
     'cl.lib',
+    'cl.neo',
     'cl.opinion_page',
     'cl.recap',
     'cl.scrapers',
