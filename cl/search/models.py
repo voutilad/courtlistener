@@ -423,7 +423,6 @@ class Court(models.Model):
     position = models.FloatField(
         help_text='A dewey-decimal-style numeral indicating a hierarchical '
                   'ordering of jurisdictions',
-        null=True,
         db_index=True,
         unique=True
     )
@@ -708,6 +707,10 @@ class OpinionCluster(models.Model):
             return caption  # neutral cites lack the parentheses, so we're done here.
         elif self.federal_cite_one:
             caption += ", %s" % self.federal_cite_one
+        elif self.federal_cite_two:
+            caption += ", %s" % self.federal_cite_two
+        elif self.federal_cite_three:
+            caption += ", %s" % self.federal_cite_three
         elif self.specialty_cite_one:
             caption += ", %s" % self.specialty_cite_one
         elif self.state_cite_regional:
@@ -851,7 +854,7 @@ class Opinion(models.Model):
         symmetrical=False,
         related_name="opinions_citing",
         blank=True,
-    )    
+    )
     author = models.ForeignKey(
         'people_db.Person',
         help_text="The primary author of this opinion",
