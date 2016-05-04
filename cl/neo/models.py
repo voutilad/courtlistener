@@ -13,5 +13,4 @@ class OpinionNode(StructuredNode):
 
     case_name = StringProperty(index=True)
     opinion_pk = IntegerProperty(unique_index=True, required=True)
-    cited_by = RelationshipFrom('OpinionNode', 'CITED_BY')
     cites = RelationshipTo('OpinionNode', 'CITES')
